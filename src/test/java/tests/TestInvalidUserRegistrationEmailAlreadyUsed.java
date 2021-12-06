@@ -49,7 +49,6 @@ public class TestInvalidUserRegistrationEmailAlreadyUsed extends BaseTest {
     paymentPage.insertCountry(country);
     paymentPage.insertState(state);
     paymentPage.insertPostCode(postCode);
-    paymentPage.insertPhoneNumber(phoneNumber);
     paymentPage.insertNewCustomerPassword(password);
     paymentPage.createAccount();
 

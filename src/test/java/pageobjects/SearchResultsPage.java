@@ -8,17 +8,16 @@ import org.openqa.selenium.support.PageFactory;
 public class SearchResultsPage {
 	private WebDriver driver;
 	
-	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]/h3[1]")
+	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/h3[1]")
 	private WebElement firstResult;
 	
-	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/a[1]/h3[1]")
+	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/a[1]/h3[1]")
 	private WebElement secondResult;
 	
 	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/a[1]/h3[1]")
 	private WebElement thirdResult;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/p[1]")
-	@FindBy(xpath = "//p[@class='text-danger']")
+	@FindBy(xpath = "//p[@class='txt-danger']")
 	private WebElement errorMessage;
 	
 	public SearchResultsPage(WebDriver driver) {

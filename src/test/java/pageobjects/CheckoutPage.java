@@ -8,8 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class CheckoutPage {
 	private WebDriver driver;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/a[1]")
-	@FindBy(xpath = "//a[@class='btn btn-default']")
+	@FindBy(xpath = "//a[@class='btn-default']")
 	private WebElement payNowButton;
 	
 	public CheckoutPage(WebDriver driver) {

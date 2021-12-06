@@ -8,21 +8,19 @@ import org.openqa.selenium.support.PageFactory;
 public class CartWindow {
 	private WebDriver driver;
 	
-	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/p[1]/a[1]")
+	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/p[1]/a[1]")
 	private WebElement firstProductName;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/input[1]")
-	@FindBy(xpath = "//input[@id='0']")
+	@FindBy(xpath = "//input[@id='first']")
 	private WebElement firstProductQuantity;
 	
-	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/p[2]")
+	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/p[5]")
 	private WebElement firstProductSize;
 	
 	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[2]/p[1]/a[1]")
 	private WebElement secondProductName;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/input[1]")
-	@FindBy(xpath = "//input[@id='1']")
+	@FindBy(xpath = "//input[@id='second']")
 	private WebElement secondProductQuantity;
 	
 	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[2]/p[2]")
@@ -34,16 +32,13 @@ public class CartWindow {
 	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/strong[1]")
 	private WebElement totalPrice;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[3]/div[1]/button[1]")
 	@FindBy(xpath = "//button[@id='empty-cart']")
 	private WebElement emptyCartButton;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[1]/button[1]")
 	@FindBy(xpath = "//button[contains(text(),'X')]")
 	private WebElement closeWindowButton;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[3]/div[2]/a[1]")
-	@FindBy(xpath = "//a[@class='btn btn-default']")
+	@FindBy(xpath = "//a[@class='btn']")
 	private WebElement checkoutButton;
 	
 	

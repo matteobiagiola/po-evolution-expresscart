@@ -8,36 +8,30 @@ import org.openqa.selenium.support.PageFactory;
 public class ProductPage {
 	private WebDriver driver;
 	
-	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[2]/button[1]")
+	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/button[1]")
 	private WebElement increaseQuantityButton;
 	
-	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/button[1]")
+	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/button[1]")
 	private WebElement decreaseQuantityButton;
 	
-	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/label[1]/input[1]")
+	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/input[1]")
 	private WebElement largeSizeInput;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/div[4]")
-	@FindBy(xpath = "//div[@id='notify_message']")
+	@FindBy(xpath = "//div[@id='notify_msg']")
 	private WebElement notificationMessage;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/button[1]")
-	@FindBy(xpath = "//button[contains(text(),'Add to cart')]")
+	@FindBy(xpath = "//button[contains(text(),'add to cart')]")
 	private WebElement addToCartButton;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/nav[1]/div[1]/div[2]/ul[1]/li[1]/a[1]")
-	@FindBy(xpath = "//a[@class='menu-btn']")
+	@FindBy(xpath = "//a[@class='menu']")
 	private WebElement cartIcon;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/h4[1]")
-	@FindBy(xpath = "//h4[@class='col-md-10 product-price']")
+	@FindBy(xpath = "//h4[@class='col-md-5 product-price']")
 	private WebElement productPrice;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/div[3]/div[1]/nav[1]/div[1]/div[1]/ul[1]/li[1]/a[1]")
 	@FindBy(xpath = "//a[contains(text(),'Home')]")
 	private WebElement homePageNavbarButton;
 	
-//	@FindBy(xpath = "/html[1]/body[1]/nav[1]/div[1]/div[2]/ul[1]/li[1]/a[1]/span[1]")
 	@FindBy(xpath = "//span[@id='cart-count']")
 	private WebElement cartCount;
 	
