@@ -3,30 +3,35 @@ package tests;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import pageobjects.CartWindow;
-import pageobjects.HomePage;
-import pageobjects.ProductPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.BaseTest;
 
 public class TestEmptyCart extends BaseTest {
 
   @Test
   public void testEmptyCart() {
-    HomePage homePage = new HomePage(driver);
-    homePage.selectGreenJacket();
 
-    ProductPage productPage = new ProductPage(driver);
-    productPage.increaseQuantity();
-    productPage.addToCart();
+    WebElement greenJacketLink = driver.findElement(By.xpath("//h3[contains(text(),'Green Jacket')]"));
+    greenJacketLink.click();
+    WebElement increaseQuantityButton = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/button[1]"));
+    increaseQuantityButton.click();
+    WebElement addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'add to cart')]"));
+    addToCartButton.click();
+    WebElement notificationMessage = driver.findElement(By.xpath("//div[@id='notify_msg']"));
+    assertEquals("Cart successfully updated", notificationMessage.getText());
+    WebElement cartCount = driver.findElement(By.xpath("//span[@id='cart-count']"));
+    assertEquals(2, Integer.parseInt(cartCount.getText()));
 
-    assertEquals("Cart successfully updated", productPage.getNotificationMessage());
-    assertEquals(2, productPage.getCartCount());
+    WebElement cartIcon = driver.findElement(By.xpath("//a[@class='menu']"));
+    cartIcon.click();
 
-    productPage.openCart();
-    CartWindow cartWindow = new CartWindow(driver);
-    cartWindow.emptyCart();
-    cartWindow.close();
+    WebElement emptyCartButton = driver.findElement(By.xpath("//button[@id='empty-cart']"));
+    emptyCartButton.click();
+    WebElement closeWindowButton = driver.findElement(By.xpath("//button[contains(text(),'X')]"));
+    closeWindowButton.click();
 
-    assertEquals(0, productPage.getCartCount());
+    cartCount = driver.findElement(By.xpath("//span[@id='cart-count']"));
+    assertEquals(0, Integer.parseInt(cartCount.getText()));
   }
 }

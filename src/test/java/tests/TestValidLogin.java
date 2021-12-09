@@ -3,40 +3,46 @@ package tests;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import pageobjects.CartWindow;
-import pageobjects.CheckoutPage;
-import pageobjects.HomePage;
-import pageobjects.PaymentPage;
-import pageobjects.ProductPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.BaseTest;
 
 public class TestValidLogin extends BaseTest {
 
   @Test
   public void testValidLogin() {
-    HomePage homePage = new HomePage(driver);
-    homePage.selectBlueTShirt();
 
-    ProductPage productPage = new ProductPage(driver);
-    productPage.increaseQuantity();
-    productPage.increaseQuantity();
-    productPage.selectLargeSize();
-    productPage.addToCart();
+    WebElement blueTShirtLink = driver.findElement(By.xpath("//h3[contains(text(),'Blue t-shirt')]"));
+    blueTShirtLink.click();
 
-    assertEquals("Cart successfully updated", productPage.getNotificationMessage());
+    WebElement increaseQuantityButton = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/button[1]"));
+    increaseQuantityButton.click();
+    increaseQuantityButton.click();
+    WebElement largeSizeInput = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/input[1]"));
+    largeSizeInput.click();
+    WebElement addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'add to cart')]"));
+    addToCartButton.click();
 
-    productPage.openCart();
-    CartWindow cartWindow = new CartWindow(driver);
+    WebElement notificationMessage = driver.findElement(By.xpath("//div[@id='notify_msg']"));
+    assertEquals("Cart successfully updated", notificationMessage.getText());
 
-    cartWindow.goToCheckout();
-    CheckoutPage checkoutPage = new CheckoutPage(driver);
-    checkoutPage.goToPaymentPage();
+    WebElement cartIcon = driver.findElement(By.xpath("//a[@class='menu']"));
+    cartIcon.click();
 
-    PaymentPage paymentPage = new PaymentPage(driver);
-    paymentPage.insertExistingCustomerEmail("test@test.it");
-    paymentPage.insertPassword("test");
-    paymentPage.login();
+    WebElement checkoutButton = driver.findElement(By.xpath("//a[@class='btn']"));
+    checkoutButton.click();
 
-    assertEquals("test@test.it", paymentPage.getCustomerDetailsEmailAddress());
+    WebElement payNowButton = driver.findElement(By.xpath("//a[@class='btn-default']"));
+    payNowButton.click();
+
+    WebElement existingCustomerEmailAddressInput = driver.findElement(By.xpath("//input[@id='customerloginEmail']"));
+    existingCustomerEmailAddressInput.sendKeys("test@test.it");
+    WebElement passwordInput = driver.findElement(By.xpath("//input[@id='customerloginPassword']"));
+    passwordInput.sendKeys("test");
+    WebElement loginButton = driver.findElement(By.xpath("//button[@id='customerLogin']"));
+    loginButton.click();
+
+    WebElement newCustomerEmailAddressInput = driver.findElement(By.xpath("//input[@id=\"shipemail\"]"));
+    assertEquals("test@test.it", newCustomerEmailAddressInput.getAttribute("value"));
   }
 }

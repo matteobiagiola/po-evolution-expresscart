@@ -1,38 +1,40 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
-import pageobjects.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.BaseTest;
-import utils.FunctionalUtilities;
 
 public class TestInvalidUserRegistrationEmailAlreadyUsed extends BaseTest {
 
   @Test
   public void testInvalidUserRegistrationEmailAlreadyUsed() throws InterruptedException {
 
-    /* start added by authors */
-    HomePage homePage = new HomePage(driver);
-    homePage.selectBlueTShirt();
+    WebElement blueTShirtLink = driver.findElement(By.xpath("//h3[contains(text(),'Blue t-shirt')]"));
+    blueTShirtLink.click();
 
-    ProductPage productPage = new ProductPage(driver);
-    productPage.increaseQuantity();
-    productPage.increaseQuantity();
-    productPage.selectLargeSize();
-    productPage.addToCart();
+    WebElement increaseQuantityButton = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/button[1]"));
+    increaseQuantityButton.click();
+    increaseQuantityButton.click();
+    WebElement largeSizeInput = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/input[1]"));
+    largeSizeInput.click();
+    WebElement addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'add to cart')]"));
+    addToCartButton.click();
 
-    assertEquals("Cart successfully updated", productPage.getNotificationMessage());
+    WebElement notificationMessage = driver.findElement(By.xpath("//div[@id='notify_msg']"));
+    assertEquals("Cart successfully updated", notificationMessage.getText());
 
-    productPage.openCart();
-    CartWindow cartWindow = new CartWindow(driver);
+    WebElement cartIcon = driver.findElement(By.xpath("//a[@class='menu']"));
+    cartIcon.click();
 
-    cartWindow.goToCheckout();
-    CheckoutPage checkoutPage = new CheckoutPage(driver);
-    checkoutPage.goToPaymentPage();
+    WebElement checkoutButton = driver.findElement(By.xpath("//a[@class='btn']"));
+    checkoutButton.click();
 
-    PaymentPage paymentPage = new PaymentPage(driver);
+    WebElement payNowButton = driver.findElement(By.xpath("//a[@class='btn-default']"));
+    payNowButton.click();
+
     String randomEmail = "test@test.it";
     String firstName = "firstName";
     String lastName = "lastName";
@@ -42,18 +44,29 @@ public class TestInvalidUserRegistrationEmailAlreadyUsed extends BaseTest {
     String postCode = "1234";
     String phoneNumber = "123456789";
     String password = "password";
-    paymentPage.insertNewCustomerEmail(randomEmail);
-    paymentPage.insertFirstName(firstName);
-    paymentPage.insertLastName(lastName);
-    paymentPage.insertAddress1(firstAddress);
-    paymentPage.insertCountry(country);
-    paymentPage.insertState(state);
-    paymentPage.insertPostCode(postCode);
-    paymentPage.insertNewCustomerPassword(password);
-    paymentPage.createAccount();
 
-    assertEquals("A customer already exists with that email address", paymentPage.getNotificationMessage());
-    /* end added by authors */
+    WebElement newCustomerEmailAddressInput = driver.findElement(By.xpath("//input[@id=\"shipemail\"]"));
+    WebElement newCustomerFirstNameInput = driver.findElement(By.xpath("//input[@id=\"shipFirstname\"]"));
+    WebElement newCustomerLastNameInput = driver.findElement(By.xpath("//input[@id=\"shipLastname\"]"));
+    WebElement newCustomerAddress1Input = driver.findElement(By.xpath("//input[@id=\"shipAddr1\"]"));
+    WebElement newCustomerCountryInput = driver.findElement(By.xpath("//input[@id=\"shipCountry\"]"));
+    WebElement newCustomerStateInput = driver.findElement(By.xpath("//input[@id=\"shipState\"]"));
+    WebElement newCustomerPostCodeInput = driver.findElement(By.xpath("//input[@id=\"shipPostcode\"]"));
+    WebElement newCustomerPasswordInput = driver.findElement(By.xpath("//input[@id='newCustomerPassword']"));
+    WebElement createAccountButton = driver.findElement(By.xpath("//a[@id='createCustomerAccount']"));
+
+    newCustomerEmailAddressInput.sendKeys(randomEmail);
+    newCustomerFirstNameInput.sendKeys(firstName);
+    newCustomerLastNameInput.sendKeys(lastName);
+    newCustomerAddress1Input.sendKeys(firstAddress);
+    newCustomerCountryInput.sendKeys(country);
+    newCustomerStateInput.sendKeys(state);
+    newCustomerPostCodeInput.sendKeys(postCode);
+    newCustomerPasswordInput.sendKeys(password);
+    createAccountButton.click();
+
+    notificationMessage = driver.findElement(By.xpath("//div[@id='notify_message']"));
+    assertEquals("A customer already exists with that email address", notificationMessage.getText());
 
   }
 }

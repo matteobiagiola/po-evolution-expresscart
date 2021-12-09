@@ -3,17 +3,21 @@ package tests;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import pageobjects.HomePage;
-import pageobjects.SearchResultsPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.BaseTest;
 
 public class TestSearchProductNotPresent extends BaseTest {
 
   @Test
   public void testSearchProductNotPresent() {
-    HomePage homePage = new HomePage(driver);
-    homePage.searchItem("test");
-    SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
-    assertEquals("No products found", searchResultsPage.getErrorMessage());
+    WebElement searchInput = driver.findElement(By.xpath("//input[@id='search']"));
+    WebElement searchButton = driver.findElement(By.xpath("//button[@id='button_search']"));
+
+    searchInput.sendKeys("test");
+    searchButton.click();
+
+    WebElement errorMessage = driver.findElement(By.xpath("//p[@class='txt-danger']"));
+    assertEquals("No products found", errorMessage.getText());
   }
 }

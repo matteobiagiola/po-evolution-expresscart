@@ -3,11 +3,8 @@ package tests;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import pageobjects.CartWindow;
-import pageobjects.CheckoutPage;
-import pageobjects.HomePage;
-import pageobjects.PaymentPage;
-import pageobjects.ProductPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.BaseTest;
 import utils.FunctionalUtilities;
 
@@ -15,25 +12,30 @@ public class TestValidUserRegistration extends BaseTest {
 
   @Test
   public void testValidUserRegistration() throws InterruptedException {
-    HomePage homePage = new HomePage(driver);
-    homePage.selectBlueTShirt();
 
-    ProductPage productPage = new ProductPage(driver);
-    productPage.increaseQuantity();
-    productPage.increaseQuantity();
-    productPage.selectLargeSize();
-    productPage.addToCart();
+    WebElement blueTShirtLink = driver.findElement(By.xpath("//h3[contains(text(),'Blue t-shirt')]"));
+    blueTShirtLink.click();
 
-    assertEquals("Cart successfully updated", productPage.getNotificationMessage());
+    WebElement increaseQuantityButton = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/button[1]"));
+    increaseQuantityButton.click();
+    increaseQuantityButton.click();
+    WebElement largeSizeInput = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/input[1]"));
+    largeSizeInput.click();
+    WebElement addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'add to cart')]"));
+    addToCartButton.click();
 
-    productPage.openCart();
-    CartWindow cartWindow = new CartWindow(driver);
+    WebElement notificationMessage = driver.findElement(By.xpath("//div[@id='notify_msg']"));
+    assertEquals("Cart successfully updated", notificationMessage.getText());
 
-    cartWindow.goToCheckout();
-    CheckoutPage checkoutPage = new CheckoutPage(driver);
-    checkoutPage.goToPaymentPage();
+    WebElement cartIcon = driver.findElement(By.xpath("//a[@class='menu']"));
+    cartIcon.click();
 
-    PaymentPage paymentPage = new PaymentPage(driver);
+    WebElement checkoutButton = driver.findElement(By.xpath("//a[@class='btn']"));
+    checkoutButton.click();
+
+    WebElement payNowButton = driver.findElement(By.xpath("//a[@class='btn-default']"));
+    payNowButton.click();
+
     String randomEmail = FunctionalUtilities.getRandomEmail();
     String firstName = "firstName";
     String lastName = "lastName";
@@ -43,29 +45,44 @@ public class TestValidUserRegistration extends BaseTest {
     String postCode = "1234";
     String phoneNumber = "123456789";
     String password = "password";
-    paymentPage.insertNewCustomerEmail(randomEmail);
-    paymentPage.insertFirstName(firstName);
-    paymentPage.insertLastName(lastName);
-    paymentPage.insertAddress1(firstAddress);
-    paymentPage.insertCountry(country);
-    paymentPage.insertState(state);
-    paymentPage.insertPostCode(postCode);
-    paymentPage.insertNewCustomerPassword(password);
-    paymentPage.createAccount();
 
-    /* start added by authors */
-    assertEquals(randomEmail, paymentPage.getLoggedCustomerShipEmailAddress());
-    assertEquals(firstName, paymentPage.getLoggedCustomerShipFirstName());
-    assertEquals(lastName, paymentPage.getLoggedCustomerShipLastName());
-    assertEquals(firstAddress, paymentPage.getLoggedCustomerShipFirstAddress());
-    assertEquals(firstAddress, paymentPage.getLoggedCustomerShipSecondAddress());
-    assertEquals(country, paymentPage.getLoggedCustomerShipCountry());
-    assertEquals(state, paymentPage.getLoggedCustomerShipState());
-    assertEquals(postCode, paymentPage.getLoggedCustomerShipPostCode());
-    assertEquals(phoneNumber, paymentPage.getLoggedCustomerShipPhoneNumber());
-    /* end added by authors */
+    WebElement newCustomerEmailAddressInput = driver.findElement(By.xpath("//input[@id=\"shipemail\"]"));
+    WebElement newCustomerFirstNameInput = driver.findElement(By.xpath("//input[@id=\"shipFirstname\"]"));
+    WebElement newCustomerLastNameInput = driver.findElement(By.xpath("//input[@id=\"shipLastname\"]"));
+    WebElement newCustomerAddress1Input = driver.findElement(By.xpath("//input[@id=\"shipAddr1\"]"));
+    WebElement newCustomerCountryInput = driver.findElement(By.xpath("//input[@id=\"shipCountry\"]"));
+    WebElement newCustomerStateInput = driver.findElement(By.xpath("//input[@id=\"shipState\"]"));
+    WebElement newCustomerPostCodeInput = driver.findElement(By.xpath("//input[@id=\"shipPostcode\"]"));
+    WebElement newCustomerPasswordInput = driver.findElement(By.xpath("//input[@id='newCustomerPassword']"));
+    WebElement createAccountButton = driver.findElement(By.xpath("//a[@id='createCustomerAccount']"));
 
+    newCustomerEmailAddressInput.sendKeys(randomEmail);
+    newCustomerFirstNameInput.sendKeys(firstName);
+    newCustomerLastNameInput.sendKeys(lastName);
+    newCustomerAddress1Input.sendKeys(firstAddress);
+    newCustomerCountryInput.sendKeys(country);
+    newCustomerStateInput.sendKeys(state);
+    newCustomerPostCodeInput.sendKeys(postCode);
+    newCustomerPasswordInput.sendKeys(password);
+    createAccountButton.click();
 
+    newCustomerEmailAddressInput = driver.findElement(By.xpath("//input[@id=\"shipemail\"]"));
+    newCustomerFirstNameInput = driver.findElement(By.xpath("//input[@id=\"shipFirstname\"]"));
+    newCustomerLastNameInput = driver.findElement(By.xpath("//input[@id=\"shipLastname\"]"));
+    newCustomerAddress1Input = driver.findElement(By.xpath("//input[@id=\"shipAddr1\"]"));
+    newCustomerCountryInput = driver.findElement(By.xpath("//input[@id=\"shipCountry\"]"));
+    newCustomerStateInput = driver.findElement(By.xpath("//input[@id=\"shipState\"]"));
+    newCustomerPostCodeInput = driver.findElement(By.xpath("//input[@id=\"shipPostcode\"]"));
+    WebElement newCustomerPhoneNumberInput = driver.findElement(By.xpath("//input[@id=\"shipPhoneNumber\"]"));
 
+    assertEquals(randomEmail, newCustomerEmailAddressInput.getAttribute("value"));
+    assertEquals(firstName, newCustomerFirstNameInput.getAttribute("value"));
+    assertEquals(lastName, newCustomerLastNameInput.getAttribute("value"));
+    assertEquals(firstAddress, newCustomerAddress1Input.getAttribute("value"));
+    assertEquals(firstAddress, newCustomerAddress1Input.getAttribute("value"));
+    assertEquals(country, newCustomerCountryInput.getAttribute("value"));
+    assertEquals(state, newCustomerStateInput.getAttribute("value"));
+    assertEquals(postCode, newCustomerPostCodeInput.getAttribute("value"));
+    assertEquals(phoneNumber, newCustomerPhoneNumberInput.getAttribute("value"));
   }
 }
