@@ -11,14 +11,14 @@ public class TestSearchValidProduct extends BaseTest {
 
   @Test
   public void testSearchValidProduct() {
-    WebElement searchInput = driver.findElement(By.xpath("//input[@id='frm_search']"));
-    WebElement searchButton = driver.findElement(By.xpath("//button[@id='btn_search']"));
+    WebElement searchInput = driver.findElement(By.xpath("//input[@id='search']"));
+    WebElement searchButton = driver.findElement(By.xpath("//button[@id='button_search']"));
 
     searchInput.sendKeys("jacket");
     searchButton.click();
 
-    WebElement firstResult = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]/h3[1]"));
-    WebElement secondResult = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/a[1]/h3[1]"));
+    WebElement firstResult = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/h3[1]"));
+    WebElement secondResult = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/a[1]/h3[1]"));
     assertEquals("Green Jacket", firstResult.getText());
     assertEquals("Orange Jacket", secondResult.getText());
   }

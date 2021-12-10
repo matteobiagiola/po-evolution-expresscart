@@ -11,13 +11,13 @@ public class TestSearchProductNotPresent extends BaseTest {
 
   @Test
   public void testSearchProductNotPresent() {
-    WebElement searchInput = driver.findElement(By.xpath("//input[@id='frm_search']"));
-    WebElement searchButton = driver.findElement(By.xpath("//button[@id='btn_search']"));
+    WebElement searchInput = driver.findElement(By.xpath("//input[@id='search']"));
+    WebElement searchButton = driver.findElement(By.xpath("//button[@id='button_search']"));
 
     searchInput.sendKeys("test");
     searchButton.click();
 
-    WebElement errorMessage = driver.findElement(By.xpath("//p[@class='text-danger']"));
+    WebElement errorMessage = driver.findElement(By.xpath("//p[@class='txt-danger']"));
     assertEquals("No products found", errorMessage.getText());
   }
 }

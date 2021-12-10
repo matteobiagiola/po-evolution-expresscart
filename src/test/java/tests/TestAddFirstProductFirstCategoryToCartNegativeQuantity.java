@@ -12,19 +12,19 @@ public class TestAddFirstProductFirstCategoryToCartNegativeQuantity extends Base
   @Test
   public void testAddFirstProductFirstCategoryToCartNegativeQuantity() throws InterruptedException {
 
-    WebElement blueTShirtLink = driver.findElement(By.xpath("//h3[contains(text(),'Blue T-shirt')]"));
+    WebElement blueTShirtLink = driver.findElement(By.xpath("//h3[contains(text(),'Blue t-shirt')]"));
     blueTShirtLink.click();
 
-    WebElement decreaseQuantityButton = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/button[1]"));
+    WebElement decreaseQuantityButton = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/button[1]"));
     decreaseQuantityButton.click();
     decreaseQuantityButton.click();
     decreaseQuantityButton.click();
-    WebElement largeSizeInput = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/label[1]/input[1]"));
+    WebElement largeSizeInput = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/input[1]"));
     largeSizeInput.click();
-    WebElement addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'Add to cart')]"));
+    WebElement addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'add to cart')]"));
     addToCartButton.click();
 
-    WebElement notificationMessage = driver.findElement(By.xpath("//div[@id='notify_message']"));
+    WebElement notificationMessage = driver.findElement(By.xpath("//div[@id='notify_msg']"));
     assertEquals("Cart successfully updated", notificationMessage.getText());
 
     WebElement cartCount = driver.findElement(By.xpath("//span[@id='cart-count']"));

@@ -11,21 +11,21 @@ public class TestAddFirstAndLastProductsFirstCategoryToCart extends BaseTest {
 
   @Test
   public void testAddFirstAndLastProductsFirstCategoryToCart() throws InterruptedException {
-    WebElement blueTShirtLink = driver.findElement(By.xpath("//h3[contains(text(),'Blue T-shirt')]"));
+    WebElement blueTShirtLink = driver.findElement(By.xpath("//h3[contains(text(),'Blue t-shirt')]"));
     blueTShirtLink.click();
 
-    WebElement increaseQuantityButton = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[2]/button[1]"));
+    WebElement increaseQuantityButton = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/button[1]"));
     increaseQuantityButton.click();
     increaseQuantityButton.click();
-    WebElement largeSizeInput = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/label[1]/input[1]"));
+    WebElement largeSizeInput = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/input[1]"));
     largeSizeInput.click();
-    WebElement addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'Add to cart')]"));
+    WebElement addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'add to cart')]"));
     addToCartButton.click();
 
-    WebElement productPrice = driver.findElement(By.xpath("//h4[@class='col-md-10 product-price']"));
+    WebElement productPrice = driver.findElement(By.xpath("//h4[@class='col-md-5 product-price']"));
     double price1 = Double.parseDouble(productPrice.getText().substring(1));
 
-    WebElement notificationMessage = driver.findElement(By.xpath("//div[@id='notify_message']"));
+    WebElement notificationMessage = driver.findElement(By.xpath("//div[@id='notify_msg']"));
     assertEquals("Cart successfully updated", notificationMessage.getText());
 
     WebElement homePageNavbarButton = driver.findElement(By.xpath("//a[contains(text(),'Home')]"));
@@ -34,25 +34,25 @@ public class TestAddFirstAndLastProductsFirstCategoryToCart extends BaseTest {
     WebElement greyTrousersLink = driver.findElement(By.xpath("//h3[contains(text(),'Grey Trousers')]"));
     greyTrousersLink.click();
 
-    largeSizeInput = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/label[1]/input[1]"));
+    largeSizeInput = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/input[1]"));
     largeSizeInput.click();
-    addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'Add to cart')]"));
+    addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'add to cart')]"));
     addToCartButton.click();
-    productPrice = driver.findElement(By.xpath("//h4[@class='col-md-10 product-price']"));
+    productPrice = driver.findElement(By.xpath("//h4[@class='col-md-5 product-price']"));
     double price2 = Double.parseDouble(productPrice.getText().substring(1));
 
-    notificationMessage = driver.findElement(By.xpath("//div[@id='notify_message']"));
+    notificationMessage = driver.findElement(By.xpath("//div[@id='notify_msg']"));
     assertEquals("Cart successfully updated", notificationMessage.getText());
 
-    WebElement cartIcon = driver.findElement(By.xpath("//a[@class='menu-btn']"));
+    WebElement cartIcon = driver.findElement(By.xpath("//a[@class='menu']"));
     cartIcon.click();
 
-    WebElement firstProductName = driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/p[1]/a[1]"));
-    WebElement firstProductSize = driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/p[2]"));
-    WebElement firstProductQuantity = driver.findElement(By.xpath("//input[@id='0']"));
+    WebElement firstProductName = driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/p[1]/a[1]"));
+    WebElement firstProductSize = driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/p[5]"));
+    WebElement firstProductQuantity = driver.findElement(By.xpath("//input[@id='first']"));
     WebElement secondProductName = driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[2]/p[1]/a[1]"));
     WebElement secondProductSize = driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[2]/p[2]"));
-    WebElement secondProductQuantity = driver.findElement(By.xpath("//input[@id='1']"));
+    WebElement secondProductQuantity = driver.findElement(By.xpath("//input[@id='second']"));
 
     assertEquals("Blue T-shirt", firstProductName.getText());
     assertEquals("L", firstProductSize.getText().trim());
@@ -67,8 +67,8 @@ public class TestAddFirstAndLastProductsFirstCategoryToCart extends BaseTest {
     double shippingPrice = Double.parseDouble(shippingPriceElement.getText().substring(1));
     double totalPrice = Double.parseDouble(totalPriceElement.getText().substring(1));
 
-    firstProductQuantity = driver.findElement(By.xpath("//input[@id='0']"));
-    secondProductQuantity = driver.findElement(By.xpath("//input[@id='1']"));
+    firstProductQuantity = driver.findElement(By.xpath("//input[@id='first']"));
+    secondProductQuantity = driver.findElement(By.xpath("//input[@id='second']"));
 
     assertEquals(
         price1 * Integer.parseInt(firstProductQuantity.getAttribute("value"))
