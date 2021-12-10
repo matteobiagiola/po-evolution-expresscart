@@ -13,27 +13,27 @@ public class TestValidUserRegistration extends BaseTest {
   @Test
   public void testValidUserRegistration() throws InterruptedException {
 
-    WebElement blueTShirtLink = driver.findElement(By.xpath("//h3[contains(text(),'Blue t-shirt')]"));
+    WebElement blueTShirtLink = driver.findElement(By.xpath("//h3[contains(text(),'Blue T-shirt')]"));
     blueTShirtLink.click();
 
-    WebElement increaseQuantityButton = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/button[1]"));
+    WebElement increaseQuantityButton = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[2]/button[1]"));
     increaseQuantityButton.click();
     increaseQuantityButton.click();
-    WebElement largeSizeInput = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/input[1]"));
+    WebElement largeSizeInput = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/label[1]/input[1]"));
     largeSizeInput.click();
-    WebElement addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'add to cart')]"));
+    WebElement addToCartButton = driver.findElement(By.xpath("//button[contains(text(),'Add to cart')]"));
     addToCartButton.click();
 
-    WebElement notificationMessage = driver.findElement(By.xpath("//div[@id='notify_msg']"));
+    WebElement notificationMessage = driver.findElement(By.xpath("//div[@id='notify_message']"));
     assertEquals("Cart successfully updated", notificationMessage.getText());
 
-    WebElement cartIcon = driver.findElement(By.xpath("//a[@class='menu']"));
+    WebElement cartIcon = driver.findElement(By.xpath("//a[@class='menu-btn']"));
     cartIcon.click();
 
-    WebElement checkoutButton = driver.findElement(By.xpath("//a[@class='btn']"));
+    WebElement checkoutButton = driver.findElement(By.xpath("//a[@class='btn btn-default']"));
     checkoutButton.click();
 
-    WebElement payNowButton = driver.findElement(By.xpath("//a[@class='btn-default']"));
+    WebElement payNowButton = driver.findElement(By.xpath("//a[@class='btn btn-default']"));
     payNowButton.click();
 
     String randomEmail = FunctionalUtilities.getRandomEmail();
@@ -46,7 +46,7 @@ public class TestValidUserRegistration extends BaseTest {
     String phoneNumber = "123456789";
     String password = "password";
 
-    WebElement newCustomerEmailAddressInput = driver.findElement(By.xpath("//input[@id=\"shipemail\"]"));
+    WebElement newCustomerEmailAddressInput = driver.findElement(By.xpath("//input[@id=\"shipEmail\"]"));
     WebElement newCustomerFirstNameInput = driver.findElement(By.xpath("//input[@id=\"shipFirstname\"]"));
     WebElement newCustomerLastNameInput = driver.findElement(By.xpath("//input[@id=\"shipLastname\"]"));
     WebElement newCustomerAddress1Input = driver.findElement(By.xpath("//input[@id=\"shipAddr1\"]"));
@@ -54,6 +54,7 @@ public class TestValidUserRegistration extends BaseTest {
     WebElement newCustomerStateInput = driver.findElement(By.xpath("//input[@id=\"shipState\"]"));
     WebElement newCustomerPostCodeInput = driver.findElement(By.xpath("//input[@id=\"shipPostcode\"]"));
     WebElement newCustomerPasswordInput = driver.findElement(By.xpath("//input[@id='newCustomerPassword']"));
+    WebElement newCustomerPhoneNumberInput = driver.findElement(By.xpath("//input[@id=\"shipPhoneNumber\"]"));
     WebElement createAccountButton = driver.findElement(By.xpath("//a[@id='createCustomerAccount']"));
 
     newCustomerEmailAddressInput.sendKeys(randomEmail);
@@ -63,17 +64,18 @@ public class TestValidUserRegistration extends BaseTest {
     newCustomerCountryInput.sendKeys(country);
     newCustomerStateInput.sendKeys(state);
     newCustomerPostCodeInput.sendKeys(postCode);
+    newCustomerPhoneNumberInput.sendKeys(phoneNumber);
     newCustomerPasswordInput.sendKeys(password);
     createAccountButton.click();
 
-    newCustomerEmailAddressInput = driver.findElement(By.xpath("//input[@id=\"shipemail\"]"));
+    newCustomerEmailAddressInput = driver.findElement(By.xpath("//input[@id=\"shipEmail\"]"));
     newCustomerFirstNameInput = driver.findElement(By.xpath("//input[@id=\"shipFirstname\"]"));
     newCustomerLastNameInput = driver.findElement(By.xpath("//input[@id=\"shipLastname\"]"));
     newCustomerAddress1Input = driver.findElement(By.xpath("//input[@id=\"shipAddr1\"]"));
     newCustomerCountryInput = driver.findElement(By.xpath("//input[@id=\"shipCountry\"]"));
     newCustomerStateInput = driver.findElement(By.xpath("//input[@id=\"shipState\"]"));
     newCustomerPostCodeInput = driver.findElement(By.xpath("//input[@id=\"shipPostcode\"]"));
-    WebElement newCustomerPhoneNumberInput = driver.findElement(By.xpath("//input[@id=\"shipPhoneNumber\"]"));
+    newCustomerPhoneNumberInput = driver.findElement(By.xpath("//input[@id=\"shipPhoneNumber\"]"));
 
     assertEquals(randomEmail, newCustomerEmailAddressInput.getAttribute("value"));
     assertEquals(firstName, newCustomerFirstNameInput.getAttribute("value"));

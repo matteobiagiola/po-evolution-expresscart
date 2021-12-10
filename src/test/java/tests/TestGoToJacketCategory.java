@@ -15,8 +15,8 @@ public class TestGoToJacketCategory extends BaseTest {
     WebElement jacketNavbarLink = driver.findElement(By.xpath("//a[contains(text(),'Jacket')]"));
     jacketNavbarLink.click();
 
-    WebElement firstResult = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/h3[1]"));
-    WebElement secondResult = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/a[1]/h3[1]"));
+    WebElement firstResult = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]/h3[1]"));
+    WebElement secondResult = driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/a[1]/h3[1]"));
     assertEquals("Green Jacket", firstResult.getText());
     assertEquals("Orange Jacket", secondResult.getText());
   }
